@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Statement</title>
+    <link rel="stylesheet" href="./print.css" media="print" />
+    <style>
+      .pie {
+        width: 200px;
+        height: 200px;
+        background-image: conic-gradient(
+          orange 64%,
+          blue 64%,
+          blue 81%,
+          black 81%
+        );
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./playstore-icon.png" alt="Logo" class="logo" />
+
+    <div class="pie"></div>
+
+    <pre>
+      &lt;div 
+        class=&quot;box&quot; 
+        style=&quot;--x=8px;--y=2px;bg:#f3f3f3;&quot;&gt;
+      &lt;/div&gt;
+    </pre>
+
+    <pre>
+      .box {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        background: var(--bg);
+      }
+    </pre>
+
+    <pre>
+      .pie {
+        width: 200px;
+        height: 200px;
+        background-image: conic-gradient(
+          orange 64%,
+          blue 64%,
+          blue 81%,
+          black 81%
+        );
+        border-radius: 50%;
+      }
+    </pre>
+
+    <div class="statement-header">
+      <div class="address">
+        <p>NASIM BIN OMAR</p>
+        <p>A3-10-08, Residensi Prima Alam Damai, No.8, Persiaran Bestari</p>
+        <p>56000 Kuala Lumpur</p>
+        <p>Kuala Lumpur</p>
+      </div>
+      <div class="statement-info">
+        <p class="statement-title">ACCOUNT STATEMENT</p>
+        <p class="issue-date">As at 02/09/2024</p>
+        <p class="issue-date">Date of Issue: 02/09/2024</p>
+      </div>
+    </div>
+
+    <div style="display: flex; border: 1px solid black; padding: 1em 0">
+      <table style="flex: 1; border: none">
+        <tr>
+          <td>Fund</td>
+          <td>:</td>
+          <td>Amanah Hartanah Bumiputera Fund</td>
+        </tr>
+        <tr>
+          <td>Account No.</td>
+          <td>:</td>
+          <td>202408000003</td>
+        </tr>
+      </table>
+      <table style="flex: 1; border: none">
+        <tr>
+          <td>Joint Holder&apos; Name</td>
+          <td>:</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Agent Code &amp; Name</td>
+          <td>:</td>
+          <td>01022102 PHB ASSET MANAGEMENT BERHAD</td>
+        </tr>
+      </table>
+    </div>
+
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Transaction Date</th>
+          <th>Pricing Date</th>
+          <th>Transaction Details</th>
+          <th>Amount (RM)</th>
+          <th>Unit Price (RM)</th>
+          <th>Units Credited(Debited)</th>
+          <th>Total Outstanding</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Balance B/F</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>0.00</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+    <div
+      style="width: 100%; display: flex; justify-content: flex-end; margin: 0.5em; 0; gap: 2em; padding: 1em;"
+    >
+      <p>Market value@</p>
+      <p>1.000,00</p>
+      <p>200</p>
+    </div>
+
+    <script>
+      const data = [
+        {
+          transaction_date: "09/08/2024",
+          pricing_date: "09/08/2024",
+          transaction_details: "Initial Subscription",
+          amount: 100.0,
+          unit_price: 1.0,
+          units_credited: 100.0,
+          total_outstanding: 100.0,
+        },
+        {
+          transaction_date: "12/08/2024",
+          pricing_date: "12/08/2024",
+          transaction_details: "Subscription",
+          amount: 100.0,
+          unit_price: 1.0,
+          units_credited: 100.0,
+          total_outstanding: 200.0,
+        },
+        {
+          transaction_date: "16/08/2024",
+          pricing_date: "16/08/2024",
+          transaction_details: "Redemption",
+          amount: 50.0,
+          unit_price: 1.0,
+          units_credited: -50.0,
+          total_outstanding: 150.0,
+        },
+        {
+          transaction_date: "19/08/2024",
+          pricing_date: "19/08/2024",
+          transaction_details: "Subscription",
+          amount: 50.0,
+          unit_price: 1.0,
+          units_credited: 50.0,
+          total_outstanding: 200.0,
+        },
+      ];
+
+      const tableBody = document.getElementById("table-body");
+
+      data.forEach((row) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td class="td-right">${row.transaction_date}</td>
+          <td class="td-right">${row.pricing_date}</td>
+          <td class="td-center">${row.transaction_details}</td>
+          <td class="td-right">${row.amount.toFixed(2)}</td>
+          <td class="td-right">${row.unit_price.toFixed(4)}</td>
+          <td class="td-right">${row.units_credited.toFixed(2)}</td>
+          <td class="td-right">${row.total_outstanding.toFixed(2)}</td>
+        `;
+
+        tableBody.appendChild(tr);
+      });
+    </script>
+  </body>
+</html>

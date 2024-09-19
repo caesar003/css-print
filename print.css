@@ -1,0 +1,123 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+  width: 5cm;
+}
+
+/* Layout */
+.statement-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10mm;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 5mm;
+}
+
+.statement-info {
+  border: 0.25mm solid black;
+  padding: 5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.statement-title {
+  font-weight: bold;
+  border-bottom: 0.25mm solid black;
+  padding-bottom: 3mm;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.issue-date {
+  padding: 3mm;
+  text-align: center;
+  font-size: 12pt;
+}
+
+/* Table */
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10mm;
+}
+
+.transaction-table th,
+.transaction-table td {
+  border: 0.25mm solid #dddddd;
+  padding: 2mm;
+}
+
+.transaction-table th {
+  background-color: #f2f2f2;
+}
+
+.td-right {
+  text-align: right;
+}
+
+.td-center {
+  text-align: center;
+}
+
+/* Print-specific styling */
+@media print {
+  /* Set the paper size to A4 */
+  @page {
+    size: A4 landscape; /* Ensure the paper size is A4 */
+    /* margin: auto; /1* Use default page margins *1/ */
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    color: black;
+    /* Do not set a fixed margin; use default printer margins */
+  }
+
+  .statement-header {
+    flex-direction: row;
+    gap: 0;
+    margin-bottom: 15mm;
+  }
+
+  .statement-info {
+    font-size: 12pt;
+    text-align: center;
+  }
+
+  /* Ensure tables are well-structured for print */
+  .transaction-table {
+    page-break-inside: auto;
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    font-size: 10pt;
+    padding: 3mm;
+  }
+
+  /* Remove unnecessary components from the printed version */
+  /* .logo, */
+  /* .footer, */
+  /* .interactive-elements { */
+  /*   display: none !important; */
+  /* } */
+
+  /* Avoid breaking the table rows across pages */
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}
